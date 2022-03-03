@@ -9,10 +9,13 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 
+//import Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
   const URL = "https://warm-basin-64427.herokuapp.com/";
   return (
-    <div className="App">
+    <div className="App fill-window">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

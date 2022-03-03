@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { Spinner, Button, Container, Row, Col, Figure } from "react-bootstrap";
 
 const Projects = (props) => {
+  const imgStyle = {
+    width: "25%",
+    height: "auto",
+    margin: "auto",
+  };
+
+  const style = {
+    display: "flex",
+    flexDirection: "row",
+  };
   // State to hold project data
   const [projects, setProjects] = useState(null);
 
@@ -20,20 +31,53 @@ const Projects = (props) => {
   // define a function that will return the JSX needed once we get the data
   const loaded = () => {
     return projects.map((project) => (
-      <div>
-        <h1>{project.name}</h1>
-        <img src={project.image} />
-        <a href={project.git}>
-          <button>Github</button>
-        </a>
-        <a href={project.live}>
-          <button>Live Site</button>
-        </a>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <h3>{project.name}</h3>
+            <Figure>
+              <Figure.Image
+                width={171}
+                height={180}
+                alt={project.name}
+                src={project.image}
+              />
+            </Figure>
+            <br />
+            <a href={project.git}>
+              <Button variant="secondary" className="mx-2 mt-2 mb-4">
+                Github
+              </Button>
+            </a>
+            <a href={project.live}>
+              <Button variant="secondary" className="mt-2 mb-4">
+                Live Site
+              </Button>
+            </a>
+          </Col>
+        </Row>
+      </Container>
     ));
   };
 
-  return projects ? loaded() : <h1>Loading...</h1>;
+  const loading = () => {
+    return (
+      <Spinner
+        animation="border"
+        role="status"
+        className="position-absolute top-50 start-50"
+      >
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  };
+
+  return (
+    <div>
+      <h1>Projects</h1>
+      {projects ? loaded() : loading()}
+    </div>
+  );
 };
 
 export default Projects;

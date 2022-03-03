@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
 const Header = () => {
   //inline style for the nav tag
@@ -14,18 +15,18 @@ const Header = () => {
   return (
     <div>
       <header>
-        <h1>My Portfolio Page</h1>
-        <nav style={navStyle}>
-          <Link to="/">
-            <div>HOME</div>
-          </Link>
-          <Link to="/about">
-            <div>ABOUT</div>
-          </Link>
-          <Link to="/projects">
-            <div>PROJECTS</div>
-          </Link>
-        </nav>
+        <Navbar expand="lg" variant="dark" sticky="top">
+          <Container>
+            <Navbar.Brand href="/">Will Bowles</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="/about">About</Nav.Link>
+                <Nav.Link href="/projects">Projects</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       </header>
     </div>
   );
